@@ -1,0 +1,32 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: '2018-03-26T09:39:22Z'
+  name: portal-build
+  namespace: ddp
+  resourceVersion: '38860686'
+  selfLink: /apis/build.openshift.io/v1/namespaces/ddp/buildconfigs/portal-build
+  uid: 907d4c16-30d9-11e8-9078-005056bc8e81
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: DockerImage
+      name: 'data-platform/portal:lastest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: 'ssh://git@gitlab.adeo.com:2222/digital-data-platform/portal.git'
+    sourceSecret:
+      name: ddpsecret
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+    type: Docker
+  triggers: []
+status:
+  lastVersion: 6
+
