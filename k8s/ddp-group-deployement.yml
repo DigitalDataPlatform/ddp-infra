@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ddp-group-api
+  labels:
+    app: ddp-group-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        editor: vscode
+        app: ddp-group-api
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: ddp-group-api
+        image: fclaeys/ddp-portal-api
+        ports:
+        - containerPort: 3000

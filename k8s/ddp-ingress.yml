@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /.*
+        backend:
+          serviceName: ddp-portal
+          servicePort: 80
+      - path: /config/.*
+        backend:
+          serviceName: ddp-group-api
+          servicePort: 3000
+      - path: /groups/.*
+        backend:
+          serviceName: ddp-group-api
+          servicePort: 3000
+      - path: /me/.*
+        backend:
+          serviceName: ddp-group-api
+          servicePort: 3000
+      - path: /oauth/token
+        backend:
+          serviceName: ddp-auth
+          servicePort: 3000
+      - path: /userinfo
+        backend:
+          serviceName: ddp-auth
+          servicePort: 3000       

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ddp-portal
+  labels:
+    app: ddp-portal
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        editor: vscode
+        app: ddp-portal
+      annotations:
+        sidecar.istio.io/inject: "true"    
+    spec:
+      containers:
+      - name: ddp-portal
+        image: fclaeys/ddp-portal
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always

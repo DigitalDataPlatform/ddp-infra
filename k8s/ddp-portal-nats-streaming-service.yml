@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+apiVersion: v1
+metadata:
+  name:  ddp-nats-streaming
+spec:
+  selector:
+    app:  ddp-nats-streaming
+  type:  LoadBalancer
+  ports:
+  - name:  nats
+    port:  4222
+  - name:  monitoring
+    port:  8222

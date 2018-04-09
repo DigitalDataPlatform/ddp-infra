@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ddp-nats-streaming
+  labels:
+    app: ddp-nats-streaming
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ddp-nats-streaming
+    spec:
+      containers:
+      - name: nats-streaming
+        image: nats-streaming:0.9.0-linux
+        ports:
+        - containerPort: 4222
+        - containerPort: 8222

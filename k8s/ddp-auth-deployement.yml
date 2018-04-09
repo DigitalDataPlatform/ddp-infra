@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ddp-auth
+  labels:
+    app: ddp-auth
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        editor: vscode
+        app: ddp-auth
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: ddp-auth
+        image: fclaeys/ddp-auth
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always  
